@@ -29,7 +29,7 @@
 						<div class="row no-gutters">
 							<div class="col-lg-6">
 								<div class="card-body p-md-5">
-                                    <form action="{{ route('login') }}" method="post">
+                                    <form action="{{ route('staff.login') }}" method="post">
                                         @csrf
 									<div class="text-center">
 										<img src="assets/images/logo-icon.png" width="80" alt="">
@@ -38,10 +38,12 @@
 									<div class="form-group mt-4">
 										<label for="email">Email Address</label>
 										<input type="email" name="email" id="email" class="form-control" placeholder="Enter your email address" />
+										@error('email') <b class="text-danger">{{ $message }}</b>@enderror
 									</div>
 									<div class="form-group">
 										<label for="password">Password</label>
 										<input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" />
+										@error('password')<b class="text-danger">{{ $message }}</b> @enderror
 									</div>
 									<div class="form-row">
 										<div class="form-group col">
