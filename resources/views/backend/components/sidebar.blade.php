@@ -12,15 +12,22 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="{{route('staff.dashboard')}}">
                 <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon icon-color-1"><i class="bx bx-clipboard"></i>
+                </div>
+                <div class="menu-title">Brand</div>
+            </a>
             <ul>
-                <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
+                <li> <a href="{{route('staff.brand.create')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
-                <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Sales</a>
+                <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Manage Brand</a>
                 </li>
             </ul>
         </li>

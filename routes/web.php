@@ -21,9 +21,8 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
-Route::prefix('/staff')->name('staff.')->middleware('auth')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+
 
 
 require __DIR__.'/auth.php';
+require __DIR__.'/backend.php';
