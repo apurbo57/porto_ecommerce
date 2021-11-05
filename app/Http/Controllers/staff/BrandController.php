@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\staff;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use Exception;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -14,7 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        
+        $brands = Brand::where('status','active')->get();
+        return view('backend.brand.manageBrand',compact('brands'));
     }
 
     /**
@@ -24,7 +27,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('backend.addBrand');
+        return view('backend.brand.addBrand');
     }
 
     /**
@@ -35,7 +38,27 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $request->validate([
+            'name' => 'required|string|unique:brands',
+            'status' => 'required|string',
+        ]);
+
+        try{
+            $brand = new Brand();
+            $brand->name = $request->name;
+            $brand->slug = strtolower(str_replace(' ','_',$request->name));
+            $brand->status = $request->status;
+            $brand->create_by = auth()->id();
+            $brand->save();
+            
+            session()->flash('type', 'success');
+            session()->flash('message', 'Brand Add Successfully!');
+        } catch (Exception $e) {
+            session()->flash('type', 'danger');
+            session()->flash('message', $e->getMessage());
+        }
+
+        return redirect()->back();
     }
 
     /**

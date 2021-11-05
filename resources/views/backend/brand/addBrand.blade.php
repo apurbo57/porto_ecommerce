@@ -27,6 +27,22 @@
 						<div class="card-body">
 							<div class="card-title">
 								<h4 class="mb-0">Brand Inputs</h4>
+								@if (session('message'))
+									<div class="alert alert-{{ session('type') }}">{{ session('message') }}
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										  </button>
+									</div>
+								@endif
+								@if ($errors->any())
+									<div class="alert alert-danger">
+										<ul>
+											@foreach ($errors->all() as $error)
+												<li>{{ $error }}</li>
+											@endforeach
+										</ul>
+									</div>
+								@endif
 							</div>
 							<hr/>
                             <form action="{{route('staff.brand.store')}}" method="post">

@@ -27,7 +27,7 @@
             <ul>
                 <li> <a href="{{route('staff.brand.create')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
-                <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Manage Brand</a>
+                <li> <a href="{{route('staff.brand.index')}}"><i class="bx bx-right-arrow-alt"></i>Manage Brand</a>
                 </li>
             </ul>
         </li>

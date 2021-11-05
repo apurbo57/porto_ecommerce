@@ -19,6 +19,9 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&amp;family=Roboto&amp;display=swap" />
+	<!-- Datatable CSS -->
+	<link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" />
 	<!-- Icons CSS -->
 	<link rel="stylesheet" href="{{ asset('backend/assets/css/icons.css') }}" />
 	<!-- App CSS -->
@@ -100,5 +103,8 @@
 	<script src="{{ asset('backend/assets/js/index2.js') }}"></script>
 	<!-- App JS -->
 	<script src="{{ asset('backend/assets/js/app.js') }}"></script>
+	{{-- Data table  --}}
+	<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+	@yield('js')
 </body>
 </html>
