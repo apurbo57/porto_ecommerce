@@ -22,6 +22,13 @@
 							</nav>
 						</div>
 					</div>
+					@if (session('message'))
+						<div class="alert alert-{{ session('type') }}">{{ session('message') }}
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+					@endif
 					<!--end breadcrumb-->
                     <div class="card">
 						<div class="card-body">
@@ -48,7 +55,14 @@
 											<td>{{$brand->slug}}</td>
 											<td>{{ucfirst($brand->status)}}</td>
 											<td>{{$brand->user->name}}</td>
-											<td>Edit | Delete</td>
+											<td>
+												<form action="{{route('staff.brand.destroy',$brand->id)}}" method="post">
+													@csrf 
+													@method('DELETE')
+													<a href="{{route('staff.brand.edit',$brand->id)}}"><i class="fadeIn icon-color-3 animated bx bx-edit-alt"></i></a> | 
+													<a onclick="event.preventDefault();this.closest('form').submit();" href="{{route('staff.brand.destroy',$brand->id)}}"><i class="fadeIn icon-color-1 animated bx bx-trash"></i></a>
+												</form>
+											</td>
 										</tr>
                                         @endforeach
 									</tbody>
