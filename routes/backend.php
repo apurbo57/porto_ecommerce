@@ -15,5 +15,14 @@ Route::prefix('/staff')->name('staff.')->middleware('auth')->group(function(){
         Route::put('/{id}/update', [BrandController::class, 'update'])->name('update');
         Route::delete('/{id}/destroy', [BrandController::class, 'destroy'])->name('destroy');
     });
+    //Category Route
+    ROute::prefix('/category')->name('category.')->group(function(){
+        Route::get('/index', [BrandController::class, 'index'])->name('index');
+        Route::get('/create', [BrandController::class, 'create'])->name('create');
+        Route::post('/store', [BrandController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [BrandController::class, 'edit'])->name('edit');
+        Route::put('/{id}/update', [BrandController::class, 'update'])->name('update');
+        Route::delete('/{id}/destroy', [BrandController::class, 'destroy'])->name('destroy');
+    });
     
 });

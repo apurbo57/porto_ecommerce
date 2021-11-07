@@ -20,7 +20,7 @@
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon icon-color-1"><i class="bx bx-clipboard"></i>
+                <div class="parent-icon icon-color-2"><i class="bx bx-clipboard"></i>
                 </div>
                 <div class="menu-title">Brand</div>
             </a>
@@ -28,6 +28,19 @@
                 <li> <a href="{{route('staff.brand.create')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
                 <li> <a href="{{route('staff.brand.index')}}"><i class="bx bx-right-arrow-alt"></i>Manage Brand</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon icon-color-3"><i class="bx bx-file"></i>
+                </div>
+                <div class="menu-title">Categories</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('staff.category.create')}}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+                </li>
+                <li> <a href="{{route('staff.category.index')}}"><i class="bx bx-right-arrow-alt"></i>Manage Category</a>
                 </li>
             </ul>
         </li>

@@ -17,7 +17,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::with('user')->get();
-        return view('backend.brand.manageBrand',compact('brands'));
+        return view('backend.brand.manage',compact('brands'));
     }
 
     /**
@@ -27,7 +27,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('backend.brand.addBrand');
+        return view('backend.brand.create');
     }
 
     /**
@@ -39,23 +39,21 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|unique:brands',
+            'name' => 'required|string|min:2|max:10|unique:brands',
             'status' => 'required|string',
         ]);
 
         try{
             $brand = new Brand();
             $brand->name = $request->name;
-            $brand->slug = strtolower(str_replace(' ','_',$request->name));
+            $brand->slug = slugify($request->name);
             $brand->status = $request->status;
             $brand->create_by = auth()->id();
             $brand->save();
             
-            session()->flash('type', 'success');
-            session()->flash('message', 'Brand Add Successfully!');
+            setMessage('success','Brand Add Successfully!');
         } catch (Exception $e) {
-            session()->flash('type', 'danger');
-            session()->flash('message', $e->getMessage());
+            setMessage('danger', $e->getMessage());
         }
 
         return redirect()->back();
@@ -82,7 +80,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         if ($brand) {
-            return view('backend.brand.editBrand',compact('brand'));
+            return view('backend.brand.edit',compact('brand'));
         }else{
             return redirect()->back();
         }
@@ -98,23 +96,21 @@ class BrandController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|unique:brands,id,'.$id,
+            'name' => 'required|string|min:2|max:10|unique:brands,id,'.$id,
             'status' => 'required|string'
         ]);
 
         try{
             $brand = Brand::find($id);
             $brand->name = $request->name; 
-            $brand->slug = strtolower(str_replace(' ','_',$request->name));
+            $brand->slug = slugify($request->name);
             $brand->status = $request->status;
             $brand->create_by = auth()->id();
             $brand->update();
 
-            session()->flash('type','success');
-            session()->flash('message','Brand Update Successfully !');
+            setMessage('success', 'Brand Update Successfully!');
         } catch(Exception $e){
-            session()->flash('type', 'danger');
-            session()->flash('message', $e->getMessage());
+            setMessage('danger', $e->getMessage());
         }
 
         return redirect()->back();
@@ -131,9 +127,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->delete();
 
-        session()->flash('type', 'success');
-        session()->flash('message', 'Brand Delete Successfully!');
-
+        setMessage('success', 'Brand Delete Successfully!');
         return redirect()->back();
     }
 }

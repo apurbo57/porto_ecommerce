@@ -22,13 +22,7 @@
 							</nav>
 						</div>
 					</div>
-					@if (session('message'))
-						<div class="alert alert-{{ session('type') }}">{{ session('message') }}
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-						</div>
-					@endif
+					<x-showMessage></x-showMessage>
 					<!--end breadcrumb-->
                     <div class="card">
 						<div class="card-body">
