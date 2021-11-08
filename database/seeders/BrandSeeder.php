@@ -20,7 +20,7 @@ class BrandSeeder extends Seeder
             $name = substr($faker->unique()->name,0,10);
             Brand::create([
                 'name' => $name,
-                'slug' => strtolower(str_replace(' ','_',$name)),
+                'slug' => slugify($name),
                 'status' => $this->randStatus(),
                 'create_by' => rand(1,11),
             ]);

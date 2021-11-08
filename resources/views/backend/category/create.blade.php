@@ -1,6 +1,6 @@
 @extends('backend.components.layout');
 @section('title')
-    Add Brand
+    Add Categories
 @endsection
 
 @section('content')
@@ -17,37 +17,66 @@
 								<ol class="breadcrumb mb-0 p-0">
 									<li class="breadcrumb-item"><a href="javascript:;"><i class='bx bx-clipboard'></i></a>
 									</li>
-									<li class="breadcrumb-item active" aria-current="page">Add Brand</li>
+									<li class="breadcrumb-item active" aria-current="page">Add Categories</li>
 								</ol>
 							</nav>
 						</div>
 					</div>
 					<x-showMessage></x-showMessage>
 					<!--end breadcrumb-->
-					<div class="card radius-15">
-						<div class="card-body">
-							<div class="card-title">
-								<h4 class="mb-0">Brand Inputs</h4>
+					<div class="row">
+						<div class="col-12 col-lg-9 mx-auto">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="card-title">
+										<h4 class="mb-0">Category Inputs</h4>
+									</div>
+									<hr/>
+									<form action="{{route('staff.category.store')}}" method="post">
+										@csrf
+									<div class="form-body">
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label" for="select_cat">Category Root</label>
+											<div class="col-sm-10">
+												<select name="root" class="form-control" id="select_cat">
+													<option value="0">-- Root --</option>
+													@foreach ($categories as $category)
+														<option value="{{ $category->id }}">{{ $category->name }}</option>
+														@if (count($category->subCategory))
+															@foreach($category->subcategory as $sub)
+																<option value="{{ $sub->id }}">{{ $category->name }} > {{ $sub->name }}</option>
+															@endforeach
+														@endif
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Category Name</label>
+											<div class="col-sm-10">
+												<input id="brand" name="name" class="form-control form-control-lg" type="text" placeholder="Add Your New Category...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Status</label>
+											<div class="col-sm-10">
+												<div class="custom-control custom-radio custom-control-inline">
+													<input type="radio" id="acive" name="status" value="active" class="custom-control-input">
+													<label class="custom-control-label" for="acive">Active</label>
+												</div>
+												<div class="custom-control custom-radio custom-control-inline">
+													<input type="radio" id="inacive" name="status" value="inactive" class="custom-control-input">
+													<label class="custom-control-label" for="inacive">Inactive</label>
+												</div>
+											</div>
+										</div>
+										<button type="submit" class="btn btn-primary float-right">Add Category</button>
+									</form>
+									</div>
+								</div>
 							</div>
-							<hr/>
-                            <form action="{{route('staff.brand.store')}}" method="post">
-                                @csrf
-							<div class="form-group">
-                                <label for="brand" class="text-md">Brand Name</label>
-								<input id="brand" name="name" class="form-control form-control-lg" type="text" placeholder="Add Your New Brand...">
-							</div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="acive" name="status" value="active" class="custom-control-input">
-                                <label class="custom-control-label" for="acive">Active</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="inacive" name="status" value="inactive" class="custom-control-input">
-                                <label class="custom-control-label" for="inacive">Inactive</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary float-right">Add Brand</button>
-                        </form>
 						</div>
-					</div>
+					<!--end row-->
 				</div>
 			</div>
 			<!--end page-content-wrapper-->
