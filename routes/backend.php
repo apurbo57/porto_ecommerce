@@ -3,6 +3,8 @@
 use App\Http\Controllers\staff\BrandController;
 use App\Http\Controllers\staff\CategoryController;
 use App\Http\Controllers\staff\DashboardController;
+use App\Http\Controllers\staff\ProductController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/staff')->name('staff.')->middleware('auth')->group(function(){
@@ -17,7 +19,7 @@ Route::prefix('/staff')->name('staff.')->middleware('auth')->group(function(){
         Route::delete('/{id}/destroy', [BrandController::class, 'destroy'])->name('destroy');
     });
     //Category Route
-    ROute::prefix('/category')->name('category.')->group(function(){
+    Route::prefix('/category')->name('category.')->group(function(){
         Route::get('/index', [CategoryController::class, 'index'])->name('index');
         Route::get('/create', [CategoryController::class, 'create'])->name('create');
         Route::post('/store', [CategoryController::class, 'store'])->name('store');
@@ -25,5 +27,6 @@ Route::prefix('/staff')->name('staff.')->middleware('auth')->group(function(){
         Route::put('/{id}/update', [CategoryController::class, 'update'])->name('update');
         Route::delete('/{id}/destroy', [CategoryController::class, 'destroy'])->name('destroy');
     });
-    
+    //product Route
+    Route::resource('product', ProductController::class);
 });

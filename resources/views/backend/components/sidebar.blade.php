@@ -44,6 +44,19 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon icon-color-4"><i class="bx bx-list-ol"></i>
+                </div>
+                <div class="menu-title">Products</div>
+            </a>
+            <ul>
+                <li> <a href="{{route('staff.product.create')}}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+                </li>
+                <li> <a href="{{route('staff.product.index')}}"><i class="bx bx-right-arrow-alt"></i>Manage Products</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">Web Apps</li>
         <li>
             <a href="emailbox.html">
