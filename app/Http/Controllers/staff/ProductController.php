@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\staff;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -26,8 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('root',0)->get();
-        return view('backend.product.create',compact('categories'));
+        $brands = Brand::where('status','active')->select('id','name')->get();
+        $categories = Category::where('root',0)->where('status','active')->select('id','name')->get();
+        return view('backend.product.create',compact('categories','brands'));
     }
 
     /**
@@ -38,7 +41,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = validator::make($request->all(),[
+            'name' => 'required',
+            'brand_id' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()]);
+        }else{
+            return response()->json(['success' => 'Product add Successfully']);
+        }
     }
 
     /**

@@ -32,19 +32,42 @@
 										<h4 class="mb-0">Post Inputs</h4>
 									</div>
 									<hr/>
-									<form action="{{route('staff.category.store')}}" method="post">
+									<form class="product-create" action="{{route('staff.product.store')}}" method="post">
 										@csrf
 									<div class="form-body">
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label" for="select_cat">Category Root</label>
-											<div class="col-sm-10">
-												<select name="root" class="form-control" id="select_cat">
-													<option value="0">-- Root --</option>
+											<label class="col-sm-3 col-form-label">Product Name</label>
+											<div class="col-sm-9">
+												<input name="name" class="form-control form-control-lg" type="text" placeholder="Insert Your Product name...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="select_cat">Brand Name</label>
+											<div class="col-sm-9">
+												<select name="brand_id" class="form-control" id="select_cat">
+													<option value="">-- Select Your Brand --</option>
+													<option value="0">No Brand</option>
+													@foreach ($brands as $brand)
+														<option value="{{ $brand->id }}">{{ $brand->name }}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="select_cat">Category Name</label>
+											<div class="col-sm-9">
+												<select name="category_id" class="form-control" id="select_cat">
+													<option value="">-- Select Your Category --</option>
 													@foreach ($categories as $category)
 														<option value="{{ $category->id }}">{{ $category->name }}</option>
 														@if (count($category->subCategory))
 															@foreach($category->subcategory as $sub)
 																<option value="{{ $sub->id }}">{{ $category->name }} > {{ $sub->name }}</option>
+																@if (count($sub->subCategory))
+																@foreach($sub->subcategory as $sub2)
+																<option value="{{ $sub2->id }}">{{ $category->name }} > {{ $sub->name }} > {{ $sub2->name }}</option>
+																@endforeach
+																@endif
 															@endforeach
 														@endif
 													@endforeach
@@ -52,14 +75,111 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Category Name</label>
-											<div class="col-sm-10">
-												<input id="brand" name="name" class="form-control form-control-lg" type="text" placeholder="Add Your New Category...">
+											<label class="col-sm-3 col-form-label">Model</label>
+											<div class="col-sm-9">
+												<input name="model" class="form-control form-control-lg" type="text" placeholder="Insert Your Model...">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-2 col-form-label">Status</label>
-											<div class="col-sm-10">
+											<label class="col-sm-3 col-form-label">Buying Price</label>
+											<div class="col-sm-9">
+												<input name="buying_price" class="form-control form-control-lg" type="number" placeholder="Buying Price">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Selling Price</label>
+											<div class="col-sm-9">
+												<input name="selling_price" class="form-control form-control-lg" type="number" placeholder="Selling Price">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Special Price</label>
+											<div class="col-sm-9">
+												<input name="special_price" class="form-control form-control-lg" type="number" placeholder="Special Price">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Special Price From</label>
+											<div class="col-sm-9">
+												<input name="special_price_from" class="form-control form-control-lg" type="date">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Special Price To</label>
+											<div class="col-sm-9">
+												<input name="special_price_to" class="form-control form-control-lg" type="date">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Quantity</label>
+											<div class="col-sm-9">
+												<input name="quantity" class="form-control form-control-lg" type="number" placeholder="Quantity">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Sku Code</label>
+											<div class="col-sm-9">
+												<input name="sku_code" class="form-control form-control-lg" type="text" placeholder="Insert Your Sku Code...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Color</label>
+											<div class="col-sm-9">
+												<input name="color" class="form-control form-control-lg" type="text" placeholder="Insert Your Color...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Size</label>
+											<div class="col-sm-9">
+												<input name="size" class="form-control form-control-lg" type="text" placeholder="Insert Your size...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Thumbnail</label>
+											<div class="col-sm-9">
+												<input name="thambnail" class="form-control form-control-lg" type="file">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Images</label>
+											<div class="col-sm-9">
+												<input name="images" class="form-control form-control-lg" type="file">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Warranty</label>
+											<div class="col-sm-9">
+												<div class="custom-control custom-checkbox custom-control-inline">
+													<input type="checkbox" id="yes" name="warranty" value="1" class="custom-control-input">
+													<label class="custom-control-label" for="yes">Yes</label>
+												</div>
+												<div class="custom-control custom-checkbox custom-control-inline">
+													<input type="checkbox" id="no" name="warranty" value="0" class="custom-control-input">
+													<label class="custom-control-label" for="no">No</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Warranty Duration</label>
+											<div class="col-sm-9">
+												<input name="wrarranty_duration" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Duration...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Warranty Condition</label>
+											<div class="col-sm-9">
+												<input name="wrarranty_condition" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Condition...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Description</label>
+											<div class="col-sm-9">
+												<input name="description" class="form-control form-control-lg" type="text" placeholder="Insert Your Description...">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label">Status</label>
+											<div class="col-sm-9">
 												<div class="custom-control custom-radio custom-control-inline">
 													<input type="radio" id="acive" name="status" value="active" class="custom-control-input">
 													<label class="custom-control-label" for="acive">Active</label>

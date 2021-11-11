@@ -105,6 +105,8 @@
 	<script src="{{ asset('backend/assets/js/app.js') }}"></script>
 	{{-- Data table  --}}
 	<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+	{{-- Custom js  --}}
+	<script src="{{ asset('backend/assets/js/custom.js') }}"></script>
 	@yield('js')
 </body>
 </html>
