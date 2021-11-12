@@ -9,3 +9,4 @@ $('body').on('submit', '.product-create', function (e) {
         }
     })
 })
+

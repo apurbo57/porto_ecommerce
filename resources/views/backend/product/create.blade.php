@@ -95,19 +95,30 @@
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">Special Price</label>
 											<div class="col-sm-9">
-												<input name="special_price" class="form-control form-control-lg" type="number" placeholder="Special Price">
+												<div class="custom-control custom-checkbox custom-control-inline">
+													<input type="checkbox" id="yes_sp" name="warranty" value="1" class="custom-control-input">
+													<label class="custom-control-label" for="yes_sp">Yes</label>
+												</div>
 											</div>
 										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Special Price From</label>
-											<div class="col-sm-9">
-												<input name="special_price_from" class="form-control form-control-lg" type="date">
+										<div class="special_details">
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Special Price</label>
+												<div class="col-sm-9">
+													<input name="special_price" class="form-control form-control-lg" type="number" placeholder="Special Price">
+												</div>
 											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Special Price To</label>
-											<div class="col-sm-9">
-												<input name="special_price_to" class="form-control form-control-lg" type="date">
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Special Price From</label>
+												<div class="col-sm-9">
+													<input name="special_price_from" class="form-control form-control-lg" type="date">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Special Price To</label>
+												<div class="col-sm-9">
+													<input name="special_price_to" class="form-control form-control-lg" type="date">
+												</div>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -153,28 +164,26 @@
 													<input type="checkbox" id="yes" name="warranty" value="1" class="custom-control-input">
 													<label class="custom-control-label" for="yes">Yes</label>
 												</div>
-												<div class="custom-control custom-checkbox custom-control-inline">
-													<input type="checkbox" id="no" name="warranty" value="0" class="custom-control-input">
-													<label class="custom-control-label" for="no">No</label>
+											</div>
+										</div>
+										<div class="wrrantyshow">
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Warranty Duration</label>
+												<div class="col-sm-9">
+													<input name="wrarranty_duration" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Duration...">
 												</div>
 											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Warranty Duration</label>
-											<div class="col-sm-9">
-												<input name="wrarranty_duration" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Duration...">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Warranty Condition</label>
-											<div class="col-sm-9">
-												<input name="wrarranty_condition" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Condition...">
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Warranty Condition</label>
+												<div class="col-sm-9">
+													<input name="wrarranty_condition" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Condition...">
+												</div>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-sm-3 col-form-label">Description</label>
 											<div class="col-sm-9">
-												<input name="description" class="form-control form-control-lg" type="text" placeholder="Insert Your Description...">
+												<textarea name="description" id="description" rows="10" cols="80">This is our text area!!!!</textarea>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -202,4 +211,32 @@
 			<!--end page-content-wrapper-->
 		</div>
 		<!--end page-wrapper-->
+@endsection
+
+@section('js')
+<script>
+    $().ready(function(){
+
+        $(".special_details").hide();
+		$("#yes_sp").click(function() {
+			if($(this).is(":checked")) {
+				$(".special_details").show(300);
+			} else {
+				$(".special_details").hide(200);
+			}
+		});
+
+        $(".wrrantyshow").hide();
+		$("#yes").click(function() {
+			if($(this).is(":checked")) {
+				$(".wrrantyshow").show(300);
+			} else {
+				$(".wrrantyshow").hide(200);
+			}
+		});
+    });
+		tinymce.init({
+			selector: '#description'
+		});
+</script>
 @endsection
