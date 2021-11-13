@@ -10,3 +10,7 @@ $('body').on('submit', '.product-create', function (e) {
     })
 })
 
+tinymce.init({
+    selector: '.editor'
+  });
+

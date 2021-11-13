@@ -32,3 +32,24 @@ function setMessage($type, $message){
     session()->flash('type',$type);
     session()->flash('message',$message);
 }
+
+function color(){
+    return [
+        '1' => 'Black',
+        '2' => 'White',
+        '3' => 'green',
+        '4' => 'red',
+        '5' => 'blue',
+        '6' => 'yewllo'
+    ];
+}
+
+function size(){
+    return [
+        '1' => 'S',
+        '2' => 'M',
+        '3' => 'L',
+        '4' => 'XL',
+        '5' => 'XXL'
+    ];
+}

@@ -25,170 +25,195 @@
 					<x-showMessage></x-showMessage>
 					<!--end breadcrumb-->
 					<div class="row">
-						<div class="col-12 col-lg-9 mx-auto">
-							<div class="card radius-15">
-								<div class="card-body">
-									<div class="card-title">
-										<h4 class="mb-0">Post Inputs</h4>
+						<div class="col-12 col-lg-12">
+							<div class="card border-lg-top-primary">
+								<div class="card-body p-5">
+									<div class="card-title d-flex align-items-center">
+										<h4 class="mb-0 text-primary">Product Add Form</h4>
 									</div>
-									<hr/>
+									<hr>
 									<form class="product-create" action="{{route('staff.product.store')}}" method="post">
 										@csrf
 									<div class="form-body">
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Product Name</label>
-											<div class="col-sm-9">
-												<input name="name" class="form-control form-control-lg" type="text" placeholder="Insert Your Product name...">
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Product Name</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-6">
+												<label>Slug</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+												</div>
 											</div>
 										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="select_cat">Brand Name</label>
-											<div class="col-sm-9">
-												<select name="brand_id" class="form-control" id="select_cat">
-													<option value="">-- Select Your Brand --</option>
-													<option value="0">No Brand</option>
-													@foreach ($brands as $brand)
-														<option value="{{ $brand->id }}">{{ $brand->name }}</option>
-													@endforeach
-												</select>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="select_cat">Category Name</label>
-											<div class="col-sm-9">
-												<select name="category_id" class="form-control" id="select_cat">
-													<option value="">-- Select Your Category --</option>
-													@foreach ($categories as $category)
-														<option value="{{ $category->id }}">{{ $category->name }}</option>
-														@if (count($category->subCategory))
-															@foreach($category->subcategory as $sub)
-																<option value="{{ $sub->id }}">{{ $category->name }} > {{ $sub->name }}</option>
-																@if (count($sub->subCategory))
-																@foreach($sub->subcategory as $sub2)
-																<option value="{{ $sub2->id }}">{{ $category->name }} > {{ $sub->name }} > {{ $sub2->name }}</option>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label>Category Name</label>
+												<div class="input-group">
+													<select name="category_id" class="form-control" id="select_cat">
+														<option value="">-- Select Your Category --</option>
+														@foreach ($categories as $category)
+															<option value="{{ $category->id }}">{{ $category->name }}</option>
+															@if (count($category->subCategory))
+																@foreach($category->subcategory as $sub)
+																	<option value="{{ $sub->id }}">{{ $category->name }} > {{ $sub->name }}</option>
+																	@if (count($sub->subCategory))
+																	@foreach($sub->subcategory as $sub2)
+																	<option value="{{ $sub2->id }}">{{ $category->name }} > {{ $sub->name }} > {{ $sub2->name }}</option>
+																	@endforeach
+																	@endif
 																@endforeach
-																@endif
-															@endforeach
-														@endif
+															@endif
+														@endforeach
+													</select>
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Brand Name</label>
+												<div class="input-group">
+													<select name="brand_id" class="form-control" id="select_cat">
+														<option value="">-- Select Your Brand --</option>
+														<option value="0">No Brand</option>
+														@foreach ($brands as $brand)
+															<option value="{{ $brand->id }}">{{ $brand->name }}</option>
+														@endforeach
+													</select>
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Model</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label>Buying Price</label>
+												<div class="input-group">
+													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Selling Price</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Special Price</label>
+												<div class="input-group">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" id="yes_sp" name="warranty" value="1" class="custom-control-input">
+														<label class="custom-control-label" for="yes_sp">Yes</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-row special_details">
+											<div class="form-group col-md-4">
+												<label>Special Price</label>
+												<div class="input-group">
+													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Special Price Start</label>
+												<div class="input-group">
+													<input type="date" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Special Price End</label>
+												<div class="input-group">
+													<input type="date" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-4">
+												<label>Quantity</label>
+												<div class="input-group">
+													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Sku Code</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+												</div>
+											</div>
+											<div class="form-group col-md-4">
+												<label>Warranty</label>
+												<div class="input-group">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" id="yes" name="warranty" value="1" class="custom-control-input">
+														<label class="custom-control-label" for="yes">Yes</label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="form-row wrrantyshow">
+											<div class="form-group col-md-12">
+												<label>Warranty Duration</label>
+												<div class="input-group">
+													<input type="text" class="form-control border-left-0" placeholder="Phone No">
+												</div>
+											</div>
+											<div class="form-group col-md-12">
+												<label>Warranty Condition</label>
+												<div class="input-group">
+													<textarea name="" class="form-control editor" id="" cols="30" rows="10"></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Color</label>
+												<div class="input-group">
+													@foreach (color() as $key=>$value)
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" id="color{{$value}}" name="color[]" value="{{$key}}" class="custom-control-input">
+														<label class="custom-control-label" for="color{{$value}}">{{$value}}</label>
+													</div>
 													@endforeach
-												</select>
+												</div>
 											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Model</label>
-											<div class="col-sm-9">
-												<input name="model" class="form-control form-control-lg" type="text" placeholder="Insert Your Model...">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Buying Price</label>
-											<div class="col-sm-9">
-												<input name="buying_price" class="form-control form-control-lg" type="number" placeholder="Buying Price">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Selling Price</label>
-											<div class="col-sm-9">
-												<input name="selling_price" class="form-control form-control-lg" type="number" placeholder="Selling Price">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Special Price</label>
-											<div class="col-sm-9">
-												<div class="custom-control custom-checkbox custom-control-inline">
-													<input type="checkbox" id="yes_sp" name="warranty" value="1" class="custom-control-input">
-													<label class="custom-control-label" for="yes_sp">Yes</label>
+											<div class="form-group col-md-6">
+												<label>Size</label>
+												<div class="input-group">
+													@foreach (size() as $key=>$value)
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" id="size{{$value}}" name="size[]" value="{{$key}}" class="custom-control-input">
+														<label class="custom-control-label" for="size{{$value}}">{{$value}}</label>
+													</div>
+													@endforeach
 												</div>
 											</div>
 										</div>
-										<div class="special_details">
-											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Special Price</label>
-												<div class="col-sm-9">
-													<input name="special_price" class="form-control form-control-lg" type="number" placeholder="Special Price">
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label>Thambnail</label>
+												<div class="input-group">
+													<input type="file" class="form-control border-left-0" placeholder="Phone No">
 												</div>
 											</div>
-											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Special Price From</label>
-												<div class="col-sm-9">
-													<input name="special_price_from" class="form-control form-control-lg" type="date">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Special Price To</label>
-												<div class="col-sm-9">
-													<input name="special_price_to" class="form-control form-control-lg" type="date">
+											<div class="form-group col-md-6">
+												<label>Product Gallery</label>
+												<div class="input-group">
+													<input type="file" class="form-control border-left-0" placeholder="Phone No">
 												</div>
 											</div>
 										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Quantity</label>
-											<div class="col-sm-9">
-												<input name="quantity" class="form-control form-control-lg" type="number" placeholder="Quantity">
-											</div>
+										<div class="form-group">
+											<label>Description</label>
+											<textarea class="form-control editor" placeholder="Please Enter Your Description" rows="3" cols="3"></textarea>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Sku Code</label>
-											<div class="col-sm-9">
-												<input name="sku_code" class="form-control form-control-lg" type="text" placeholder="Insert Your Sku Code...">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Color</label>
-											<div class="col-sm-9">
-												<input name="color" class="form-control form-control-lg" type="text" placeholder="Insert Your Color...">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Size</label>
-											<div class="col-sm-9">
-												<input name="size" class="form-control form-control-lg" type="text" placeholder="Insert Your size...">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Thumbnail</label>
-											<div class="col-sm-9">
-												<input name="thambnail" class="form-control form-control-lg" type="file">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Images</label>
-											<div class="col-sm-9">
-												<input name="images" class="form-control form-control-lg" type="file">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Warranty</label>
-											<div class="col-sm-9">
-												<div class="custom-control custom-checkbox custom-control-inline">
-													<input type="checkbox" id="yes" name="warranty" value="1" class="custom-control-input">
-													<label class="custom-control-label" for="yes">Yes</label>
-												</div>
-											</div>
-										</div>
-										<div class="wrrantyshow">
-											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Warranty Duration</label>
-												<div class="col-sm-9">
-													<input name="wrarranty_duration" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Duration...">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-sm-3 col-form-label">Warranty Condition</label>
-												<div class="col-sm-9">
-													<input name="wrarranty_condition" class="form-control form-control-lg" type="text" placeholder="Insert Your Warranty Condition...">
-												</div>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Description</label>
-											<div class="col-sm-9">
-												<textarea name="description" id="description" rows="10" cols="80">This is our text area!!!!</textarea>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label">Status</label>
-											<div class="col-sm-9">
+											<div class="col-md-12 text-center">
 												<div class="custom-control custom-radio custom-control-inline">
 													<input type="radio" id="acive" name="status" value="active" class="custom-control-input">
 													<label class="custom-control-label" for="acive">Active</label>
@@ -200,6 +225,7 @@
 											</div>
 										</div>
 										<button type="submit" class="btn btn-primary float-right">Add Post</button>
+									</div>
 									</form>
 									</div>
 								</div>
@@ -214,16 +240,12 @@
 @endsection
 
 @section('js')
-<script>
-    $().ready(function(){
+<script type="text/javascript">
+    $(document).ready(function(){
 
         $(".special_details").hide();
 		$("#yes_sp").click(function() {
-			if($(this).is(":checked")) {
-				$(".special_details").show(300);
-			} else {
-				$(".special_details").hide(200);
-			}
+			$(".special_details").slideToggle();
 		});
 
         $(".wrrantyshow").hide();
@@ -235,8 +257,5 @@
 			}
 		});
     });
-		tinymce.init({
-			selector: '#description'
-		});
 </script>
 @endsection
