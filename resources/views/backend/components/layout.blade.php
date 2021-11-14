@@ -107,7 +107,12 @@
 	<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 	{{-- Custom js  --}}
 	<script src="{{ asset('backend/assets/js/custom.js') }}"></script>
-	<script src="{{ asset('backend/assets/js/tinymce/jquery.tinymce.min.js') }}"></script>
+	<script src="{{ asset('backend/tinymce/tinymce.min.js') }}"></script>
+	<script type="text/javascript">
+		tinymce.init({
+			  selector: 'textarea',
+			});
+	</script>
 	@yield('js')
 </body>
 </html>

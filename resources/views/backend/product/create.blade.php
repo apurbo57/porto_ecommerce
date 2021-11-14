@@ -39,13 +39,13 @@
 											<div class="form-group col-md-6">
 												<label>Product Name</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+													<input type="text" name="name" onkeyup="convertToSlug(this.value,'#slug')" class="form-control border-left-0" placeholder="Please Insert Your Product Name">
 												</div>
 											</div>
 											<div class="form-group col-md-6">
 												<label>Slug</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+													<input type="text" name="slug" id="slug" onkeyup="convertToSlug(this.value,'#slug')" class="form-control border-left-0" placeholder="Your Slug">
 												</div>
 											</div>
 										</div>
@@ -86,7 +86,7 @@
 											<div class="form-group col-md-4">
 												<label>Model</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+													<input type="text" name="model" class="form-control border-left-0" placeholder="Insert Your Model">
 												</div>
 											</div>
 										</div>
@@ -94,13 +94,13 @@
 											<div class="form-group col-md-4">
 												<label>Buying Price</label>
 												<div class="input-group">
-													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+													<input type="number" name="buying_price" class="form-control border-left-0" placeholder="Buying Price">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
 												<label>Selling Price</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+													<input type="text" name="selling_price" class="form-control border-left-0" placeholder="Selling Price">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
@@ -113,23 +113,23 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-row special_details">
+										<div class="form-row special_details" style="display: none">
 											<div class="form-group col-md-4">
 												<label>Special Price</label>
 												<div class="input-group">
-													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+													<input type="number" name="special_price" class="form-control border-left-0" placeholder="Special Price">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
 												<label>Special Price Start</label>
 												<div class="input-group">
-													<input type="date" class="form-control border-left-0" placeholder="Last Name">
+													<input type="date" name="special_price_from" class="form-control border-left-0">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
 												<label>Special Price End</label>
 												<div class="input-group">
-													<input type="date" class="form-control border-left-0" placeholder="Last Name">
+													<input type="date" name="special_price_to" class="form-control border-left-0">
 												</div>
 											</div>
 										</div>
@@ -137,13 +137,13 @@
 											<div class="form-group col-md-4">
 												<label>Quantity</label>
 												<div class="input-group">
-													<input type="number" class="form-control border-left-0" placeholder="Last Name">
+													<input type="number" name="quantity" class="form-control border-left-0" placeholder="Quantity">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
 												<label>Sku Code</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Last Name">
+													<input type="text" name="sku_code" class="form-control border-left-0" placeholder="SKU Code">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
@@ -156,17 +156,17 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-row wrrantyshow">
+										<div class="form-row wrrantyshow" style="display: none">
 											<div class="form-group col-md-12">
 												<label>Warranty Duration</label>
 												<div class="input-group">
-													<input type="text" class="form-control border-left-0" placeholder="Phone No">
+													<input type="text" name="warranty_duration" class="form-control border-left-0" placeholder="Please Enter Your Warranty Duration">
 												</div>
 											</div>
 											<div class="form-group col-md-12">
 												<label>Warranty Condition</label>
 												<div class="input-group">
-													<textarea name="" class="form-control editor" id="" cols="30" rows="10"></textarea>
+													<textarea id="description" name="warranty_condition" class="form-control editor" id="" cols="30" rows="10"></textarea>
 												</div>
 											</div>
 										</div>
@@ -198,19 +198,19 @@
 											<div class="form-group col-md-6">
 												<label>Thambnail</label>
 												<div class="input-group">
-													<input type="file" class="form-control border-left-0" placeholder="Phone No">
+													<input type="file" name="thambnail" class="form-control border-left-0">
 												</div>
 											</div>
 											<div class="form-group col-md-6">
 												<label>Product Gallery</label>
 												<div class="input-group">
-													<input type="file" class="form-control border-left-0" placeholder="Phone No">
+													<input type="file" name="images[]" class="form-control border-left-0" multiple>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
 											<label>Description</label>
-											<textarea class="form-control editor" placeholder="Please Enter Your Description" rows="3" cols="3"></textarea>
+											<textarea class="form-control editor" name="description" id="description" placeholder="Please Enter Your Description" rows="3" cols="3"></textarea>
 										</div>
 										<div class="form-group row">
 											<div class="col-md-12 text-center">
@@ -237,25 +237,4 @@
 			<!--end page-content-wrapper-->
 		</div>
 		<!--end page-wrapper-->
-@endsection
-
-@section('js')
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $(".special_details").hide();
-		$("#yes_sp").click(function() {
-			$(".special_details").slideToggle();
-		});
-
-        $(".wrrantyshow").hide();
-		$("#yes").click(function() {
-			if($(this).is(":checked")) {
-				$(".wrrantyshow").show(300);
-			} else {
-				$(".wrrantyshow").hide(200);
-			}
-		});
-    });
-</script>
 @endsection
