@@ -31,7 +31,7 @@ class CreatePostsTable extends Migration
             $table->string('size')->nullable();
             $table->longText('thumbnail');
             $table->string('images')->nullable();
-            $table->tinyInteger('warranty')->default(0)->comment('0 no and 1 yes');
+            $table->tinyInteger('warranty')->default(0)->comment('0 no and 1 yes')->nullable();
             $table->string('warranty_duration')->nullable();
             $table->string('warranty_condition')->nullable();
             $table->longText('description');

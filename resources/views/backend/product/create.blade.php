@@ -32,7 +32,7 @@
 										<h4 class="mb-0 text-primary">Product Add Form</h4>
 									</div>
 									<hr>
-									<form class="product-create" action="{{route('staff.product.store')}}" method="post">
+									<form class="product-create" action="{{route('staff.product.store')}}" method="post" enctype="multipart/form-data">
 										@csrf
 									<div class="form-body">
 										<div class="form-row">
@@ -94,7 +94,7 @@
 											<div class="form-group col-md-4">
 												<label>Buying Price</label>
 												<div class="input-group">
-													<input type="number" name="buying_price" class="form-control border-left-0" placeholder="Buying Price">
+													<input type="number" name="buing_price" class="form-control border-left-0" placeholder="Buying Price">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
@@ -198,7 +198,7 @@
 											<div class="form-group col-md-6">
 												<label>Thambnail</label>
 												<div class="input-group">
-													<input type="file" name="thambnail" class="form-control border-left-0">
+													<input type="file" name="thumbnail" class="form-control border-left-0">
 												</div>
 											</div>
 											<div class="form-group col-md-6">

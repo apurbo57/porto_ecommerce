@@ -5,6 +5,8 @@ namespace App\Http\Controllers\staff;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Post;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,14 +45,50 @@ class ProductController extends Controller
     {
         $validator = validator::make($request->all(),[
             'name' => 'required',
+            'slug' => 'required|unique:posts',
             'brand_id' => 'required',
             'category_id' => 'required',
+            'buing_price' => 'required',
+            'selling_price' => 'required',
+            'quantity' => 'required',
+            'sku_code' => 'required',
+            'thumbnail' => 'required',
+            'description' => 'required',
+            'status' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()]);
         }else{
-            return response()->json(['success' => 'Product add Successfully']);
+            try{
+                Post::create([
+                    'name'              => $request->name,
+                    'slug'              => $request->slug,
+                    'category_id'       => $request->category_id,
+                    'brand_id'          => $request->brand_id,
+                    'model'             => $request->model,
+                    'buing_price'       => $request->buing_price,
+                    'selling_price'     => $request->selling_price,
+                    'special_price'     => $request->special_price,
+                    'special_price_from' => $request->special_price_from,
+                    'special_price_to'  => $request->special_price_to,
+                    'quantity'          => $request->quantity,
+                    'sku_code'          => $request->sku_code,
+                    'color'             => json_encode($request->color),
+                    'size'              => json_encode($request->size),
+                    'thumbnail'         => 'image.png',
+                    'images'            => 'imagessss.png',
+                    'warranty'          => $request->warranty,
+                    'warranty_duration' => $request->warranty_duration,
+                    'warranty_condition' => $request->warranty_condition,
+                    'description'       => $request->description,
+                    'status'            => $request->status,
+                    'create_by'         => auth()->id()
+                ]);
+                return response()->json(['success' => 'Product Add Successfully!']);
+            }catch(Exception $e){
+                return response()->json(['unable' => $e->getMessage()]);
+            }
         }
     }
 

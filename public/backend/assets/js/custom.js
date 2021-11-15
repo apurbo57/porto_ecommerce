@@ -3,9 +3,21 @@ $('body').on('submit', '.product-create', function (e) {
     $.ajax({
         url: '/staff/product',
         type: 'POST',
-        data: $(this).serialize(),
+        contentType: false,
+        processData: false,
+        data: new FormData(this),
         success: function (data) {
-            console.log(data)
+            if ($.isEmptyObject(data.error)) {
+                if (data.success) {
+                    toastr.success(data.success);
+                }else{
+                    toastr.error(data.unable);
+                }
+            }else{
+                $.each(data.error, function (key, value) {
+                    toastr.error(value);
+                })
+            }
         }
     })
 })
