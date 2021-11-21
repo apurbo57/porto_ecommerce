@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\staff\DashboardController;
+use App\Http\Controllers\testController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,8 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
-
+Route::get('/test',[testController::class, 'index']);
+Route::post('/test',[testController::class, 'get_data'])->name('get_data');
 
 
 require __DIR__.'/auth.php';
