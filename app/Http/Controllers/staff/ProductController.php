@@ -9,6 +9,7 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ProductController extends Controller
 {
@@ -61,6 +62,21 @@ class ProductController extends Controller
             return response()->json(['error' => $validator->errors()]);
         }else{
             try{
+                //thumnail image
+                $thumbnail = $request->file('thumbnail');
+                $thumbnailName = date('Ymdhs.') . $thumbnail->getClientOriginalExtension();
+                Image::make($thumbnail)->save(public_path('uploads/products/') . $thumbnailName);
+
+                //Gallery images
+                $images = $request->file('images');
+                $i = 0 ;
+                $fileName = [];
+                foreach ($images as $image) {
+                    $imageName = date('Ymdhs') . $i++ . '.' . $image->getClientOriginalExtension();
+                    Image::make($image)->save(public_path('uploads/products/') . $imageName);
+                    array_push($fileName, $imageName);
+                }
+
                 Post::create([
                     'name'              => $request->name,
                     'slug'              => $request->slug,
@@ -76,8 +92,8 @@ class ProductController extends Controller
                     'sku_code'          => $request->sku_code,
                     'color'             => json_encode($request->color),
                     'size'              => json_encode($request->size),
-                    'thumbnail'         => 'image.png',
-                    'images'            => 'imagessss.png',
+                    'thumbnail'         => $thumbnailName,
+                    'images'            => json_encode($fileName),
                     'warranty'          => $request->warranty,
                     'warranty_duration' => $request->warranty_duration,
                     'warranty_condition' => $request->warranty_condition,
