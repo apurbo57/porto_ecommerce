@@ -20,8 +20,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('root',0)->get();
-        return view('backend.product.manage',compact('categories'));
+        $products = Post::with('user','category','brand')->get();
+        return view('backend.product.manage',compact('products')); 
     }
 
     /**
