@@ -54,11 +54,11 @@
 											<td>{{$product->user->name}}</td>
 											<td>{{ucfirst($product->status)}}</td>
 											<td>
-												<form action="{{route('staff.category.destroy',$product->id)}}" method="post">
+												<form action="{{route('staff.product.destroy',$product->id)}}" method="post">
 													@csrf 
 													@method('DELETE')
-													<a href="{{route('staff.category.edit',$product->id)}}"><i class="fadeIn icon-color-3 animated bx bx-edit-alt"></i></a> | 
-													<a onclick="event.preventDefault();this.closest('form').submit();" href="{{route('staff.category.destroy',$product->id)}}"><i class="fadeIn icon-color-1 animated bx bx-trash"></i></a>
+													<a href="{{route('staff.product.edit',$product->id)}}"><i class="fadeIn icon-color-3 animated bx bx-edit-alt"></i></a> | 
+													<a onclick="event.preventDefault();this.closest('form').submit();" href="{{route('staff.product.destroy',$product->id)}}"><i class="fadeIn icon-color-1 animated bx bx-trash"></i></a>
 												</form>
 											</td>
 										</tr>

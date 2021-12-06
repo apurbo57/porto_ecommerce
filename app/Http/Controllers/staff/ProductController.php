@@ -127,7 +127,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $brands = Brand::where('status','active')->select('id','name')->get();
+        $categories = Category::where('root',0)->where('status','active')->select('id','name')->get();
+        return view('backend.product.edit',compact('post','categories','brands'));
+
     }
 
     /**
@@ -150,6 +154,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posts = Post::find($id);
+        if (file_exists(public_path('uploads/products/' . $posts->thumbnail))) {
+            unlink(public_path('uploads/products/' . $posts->thumbnail));
+        }
+
+        $posts->delete();
+
+        setMessage('success','Yah :) Product Delete Successfully!');
+
+        return redirect()->back();
     }
 }
