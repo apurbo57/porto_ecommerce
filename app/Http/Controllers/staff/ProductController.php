@@ -71,10 +71,12 @@ class ProductController extends Controller
                 $images = $request->file('images');
                 $i = 0 ;
                 $fileName = [];
-                foreach ($images as $image) {
-                    $imageName = date('Ymdhs') . $i++ . '.' . $image->getClientOriginalExtension();
-                    Image::make($image)->save(public_path('uploads/products/') . $imageName);
-                    array_push($fileName, $imageName);
+                if (!empty($images)) {
+                    foreach ($images as $image) {
+                        $imageName = date('Ymdhs') . $i++ . '.' . $image->getClientOriginalExtension();
+                        Image::make($image)->save(public_path('uploads/products/') . $imageName);
+                        array_push($fileName, $imageName);
+                }
                 }
 
                 Post::create([

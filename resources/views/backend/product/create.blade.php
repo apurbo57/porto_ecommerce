@@ -204,7 +204,7 @@
 											<div class="form-group col-md-6">
 												<label>Product Gallery</label>
 												<div class="input-group">
-													<input type="file" name="images[]" class="form-control border-left-0" multiple>
+													<input type="file" name="images[]" class="form-control border-left-0" multiple="multiple">
 												</div>
 											</div>
 										</div>
