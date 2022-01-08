@@ -207,7 +207,7 @@
 													<div class="input-group">
 														@foreach (color() as $key=>$value)
 														<div class="custom-control custom-checkbox custom-control-inline">
-															<input type="checkbox" id="color{{$value}}" name="color[]" value="{{$key}}" class="custom-control-input">
+															<input type="checkbox" id="color{{$value}}" {{in_array($key,json_decode($post->color))?'checked':''}} name="color[]" value="{{$key}}" class="custom-control-input">
 															<label class="custom-control-label" for="color{{$value}}">{{$value}}</label>
 														</div>
 														@endforeach
@@ -218,7 +218,7 @@
 													<div class="input-group">
 														@foreach (size() as $key=>$value)
 														<div class="custom-control custom-checkbox custom-control-inline">
-															<input type="checkbox" id="size{{$value}}" name="size[]" value="{{$key}}" class="custom-control-input">
+															<input type="checkbox" id="size{{$value}}" {{in_array($key, json_decode($post->size))?'checked':''}} name="size[]" value="{{$key}}" class="custom-control-input">
 															<label class="custom-control-label" for="size{{$value}}">{{$value}}</label>
 														</div>
 														@endforeach
