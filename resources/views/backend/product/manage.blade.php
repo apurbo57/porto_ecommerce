@@ -35,6 +35,7 @@
 									<div id="test"></div>
                                     <thead>
 										<tr>
+											<td><input type="checkbox" id="checkall"></td>
 											<th>Image</th>
 											<th>Name</th>
 											<th>Category</th>
@@ -47,6 +48,7 @@
 									<tbody>
                                         @foreach ($products as $product)
                                         <tr>
+											<td><input type="checkbox" class="checkbox-item"></td>
 											<td>{{$product->thumbnail}}</td>
 											<td>{{$product->name}}</td>
 											<td>{{$product->category->name}}</td>
@@ -64,17 +66,6 @@
 										</tr>
 										@endforeach
 									</tbody>
-									<tfoot>
-										<tr>
-											<th>Image</th>
-											<th>Name</th>
-											<th>Category</th>
-											<th>Brand</th>
-											<th>Create By</th>
-											<th>Status</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
 								</table>
 							</div>
 						</div>

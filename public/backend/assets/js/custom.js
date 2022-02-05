@@ -38,3 +38,23 @@ $('body').on('submit', '.product-create', function (e) {
         $(".wrrantyshow").slideToggle();
     });
 });
+
+$(document).on('click','#checkall', function () {
+    if (this.checked) {
+        $('.checkbox-item').each(function () {
+            this.checked = true;
+        })
+    }else{
+        $('.checkbox-item').each(function () {
+            this.checked = false;
+        })
+    }
+})
+
+$(document).on('click', '.checkbox-item', function () {
+    if ($('.checkbox-item').length === $('.checkbox-item:checked').length) {
+        $('#checkall').prop('checked', true);
+    }else{
+        $('#checkall').prop('checked', false);
+    }
+})
